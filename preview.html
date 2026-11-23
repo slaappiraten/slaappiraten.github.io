@@ -390,6 +390,8 @@ h3 { font-family: var(--font-body); text-transform: none; letter-spacing: 0; fon
 .mini th { text-align: left; font-size: 11px; color: var(--muted); font-weight: 700; padding: 6px 4px; }
 .mini td { padding: 8px 4px; border-top: 1px solid var(--line); } .mini td.tn { width: 60%; }
 .admin summary { cursor: pointer; }
+.seen { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin: 6px 0 0 auto; font-size: 12px; color: var(--muted); background: none; border: 0; padding: 4px 0; cursor: pointer; width: 100%; }
+.seen .avs .avatar { width: 20px; height: 20px; font-size: 11px; }
 .match .opp { overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .seg.four { grid-template-columns: repeat(4, 1fr); } .seg.four button { font-size: 13px; }
 .roster { padding: 4px 14px; } .roster-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
@@ -501,9 +503,10 @@ function seedDemo() {
   const t0 = Date.now() - 26 * 3600e3; let k = 0;
   const msg = (pi, body, mins) => ({ id: ++k, player_id: "demo" + pi, body, created_at: new Date(t0 + mins * 60e3).toISOString() });
   const messages = [msg(0, "Woensdag 20u tegen The Ghentlemen. Iedereen aanwezigheid doorgeven aub 🏴‍☠️", 0), msg(2, "Ik ben er!", 3), msg(4, "Ook. Wie brengt de ballen mee?", 5), msg(4, "Vorige keer was ik het al 😤", 5.5), msg(8, "zzz ik kom misschien, hangt af van mijn les", 40), msg(1, "Robbe de Slaapkop award staat al klaar 😂", 42), msg(0, "§match:" + m2, 44), msg(6, "Na de match iets drinken?", 1500), msg(0, "Uiteraard 🍻", 1502), msg(0, "§poll:Waar na de match?|Overpoort|Kot van Lars|Gewoon slapen 😴", 1503), msg(2, "§vote:10:0", 1504), msg(4, "§vote:10:1", 1505), msg(6, "§vote:10:0", 1506), msg(8, "§vote:10:2", 1507), msg(2, "§react:9:🔥", 1508), msg(4, "§react:9:🔥", 1509), msg(8, "§react:6:😂", 1510), msg(1, "§lot:demo4|brengt de ballen mee ⚽", 1512), msg(4, "Ik weer 😭", 1513)];
-  return { uid: null, profiles, attendance: att, goals, votes, predictions: preds, messages };
+  const chat_reads = [1, 2, 4, 6].map((i) => ({ player_id: "demo" + i, last_read_at: new Date(Date.now()).toISOString() }));
+  return { uid: null, profiles, attendance: att, goals, votes, predictions: preds, messages, chat_reads };
 }
-const KEYS = { settings: ["key"], messages: ["id"], profiles: ["id"], attendance: ["match_id", "player_id"], goals: ["match_id", "player_id"], votes: ["match_id", "voter_id", "category"], predictions: ["match_id", "player_id"] };
+const KEYS = { chat_reads: ["player_id"], settings: ["key"], messages: ["id"], profiles: ["id"], attendance: ["match_id", "player_id"], goals: ["match_id", "player_id"], votes: ["match_id", "voter_id", "category"], predictions: ["match_id", "player_id"] };
 const Demo = {
   mode: "demo", key: "slaappiraten-demo-v3",
   async init() { let db = null; try { db = JSON.parse(store.get(this.key)); } catch {} this.db = db || seedDemo(); },
@@ -535,11 +538,11 @@ const Live = {
   },
   uid() { return this._uid; },
   async fetchAll() {
-    const tables = Object.keys(KEYS).filter((t) => t !== "messages" && t !== "settings");
+    const tables = Object.keys(KEYS).filter((t) => !["messages", "settings", "chat_reads"].includes(t));
     const res = await Promise.all(tables.map((t) => this.c.from(t).select("*")));
     const out = {}; res.forEach((r, i) => { if (r.error) throw r.error; out[tables[i]] = r.data; });
     out.messages = []; const st = await this.c.from("settings").select("*"); out.settings = st.error ? [] : st.data;
-    if (this._uid) { const m = await this.c.from("messages").select("*").order("created_at", { ascending: false }).limit(1000); if (!m.error) out.messages = m.data.reverse(); }
+    if (this._uid) { const m = await this.c.from("messages").select("*").order("created_at", { ascending: false }).limit(1000); if (!m.error) out.messages = m.data.reverse(); const cr = await this.c.from("chat_reads").select("*"); out.chat_reads = cr.error ? [] : cr.data; }
     return out;
   },
   async signIn(email, password) { const { error } = await this.c.auth.signInWithPassword({ email, password }); if (error) throw error; },
@@ -562,6 +565,7 @@ const Live = {
     this._live = this.c.channel("live")
       .on("postgres_changes", { event: "*", schema: "public", table: "settings" }, upd("settings", ["key"]))
       .on("postgres_changes", { event: "*", schema: "public", table: "attendance" }, upd("attendance", ["match_id", "player_id"]))
+      .on("postgres_changes", { event: "*", schema: "public", table: "chat_reads" }, (p) => { if (p.eventType === "DELETE") return; const arr = (S.db.chat_reads ||= []); const i = arr.findIndex((r) => r.player_id === p.new.player_id); if (i >= 0) arr[i] = p.new; else arr.push(p.new); if (currentView()[0] === "chat") { const el = document.getElementById("chat-list"); if (el) el.innerHTML = chatList(); } })
       .subscribe();
   },
   subscribeChat() {
@@ -936,7 +940,8 @@ function chatList() {
       + `</div>`;
     lastSender = m.player_id; lastTime = d;
   });
-  return out + "</div>";
+  const lastVis = msgs[msgs.length - 1];
+  return out + "</div>" + (u && lastVis ? seenLine(lastVis) : "");
 }
 function trayHtml() {
   if (!chatTray) return "";
@@ -974,7 +979,21 @@ function notifyChat(m) {
   if (!document.hidden && currentView()[0] === "chat") return;
   try { const n = new Notification(pname(player(m.player_id)) + " · Kajuit", { body: msgPreview(m), icon: "icon-192.png", tag: "chat" }); n.onclick = () => { window.focus(); location.hash = "chat"; }; } catch {}
 }
-function markChatSeen() { const last = (S.db.messages || []).slice(-1)[0]; if (last) store.set("sp-chat-seen", last.created_at); }
+let readSent = "";
+function markChatSeen() {
+  const last = (S.db.messages || []).slice(-1)[0]; if (!last) return; store.set("sp-chat-seen", last.created_at);
+  const u = me(); if (!u || document.hidden || last.created_at <= readSent) return;
+  const mine = (S.db.chat_reads || []).find((r) => r.player_id === u.id); if (mine && mine.last_read_at >= last.created_at) { readSent = last.created_at; return; }
+  readSent = last.created_at; S.api.upsert("chat_reads", { player_id: u.id, last_read_at: last.created_at }).then(() => { const arr = (S.db.chat_reads ||= []); const i = arr.findIndex((r) => r.player_id === u.id); const row = { player_id: u.id, last_read_at: last.created_at }; if (i >= 0) arr[i] = row; else arr.push(row); }).catch(() => { readSent = ""; });
+}
+function seenLine(m) {
+  const ids = (S.db.chat_reads || []).filter((r) => r.player_id !== m.player_id && new Date(r.last_read_at) >= new Date(m.created_at)).map((r) => r.player_id).filter((id) => player(id));
+  const total = S.db.profiles.filter((p) => p.id !== m.player_id).length;
+  if (!ids.length) return `<div class="seen">Nog door niemand gelezen</div>`;
+  const names = ids.map((id) => pname(player(id)));
+  const txt = ids.length >= total ? "Gelezen door iedereen" : names.length <= 2 ? `Gelezen door ${names.map(esc).join(" en ")}` : `Gelezen door ${esc(names[0])}, ${esc(names[1])} en ${names.length - 2} ander${names.length - 2 === 1 ? "" : "en"}`;
+  return `<button type="button" class="seen" data-act="seenlist" title="${esc(names.join(", "))}">${avatarStack(ids, 6)}<span>👀 ${txt}</span></button>`;
+}
 function updateChatDot() {
   const dot = document.getElementById("chat-dot"); if (!dot) return; const u = me(); const seen = store.get("sp-chat-seen") || "";
   const n = u ? (S.db.messages || []).filter((m) => m.player_id !== u.id && m.created_at > seen && !isHidden(m)).length : 0;
@@ -1338,6 +1357,7 @@ document.addEventListener("click", (e) => {
         Notification.requestPermission().then((r) => { if (r === "granted") { store.set("sp-notif", "1"); toast("Meldingen aan zolang de app open staat."); } else toast("Meldingen zijn geblokkeerd in je instellingen."); rerenderComposer(); }); return; }
       chatTray = false; rerenderComposer(); break;
     }
+    case "seenlist": toast(b.title || ""); break;
     case "teamtab": teamTab = d.t; store.set("sp-team-tab", d.t); render(); break;
     case "klrow": klOpen = klOpen === d.t ? null : d.t; render(); break;
     case "klteam": klTeam = d.t; store.set("sp-kl-team", d.t); render(); break;
