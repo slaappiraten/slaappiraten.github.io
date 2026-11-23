@@ -342,6 +342,60 @@ details.who .who-list { margin-top: 12px; padding-top: 12px; border-top: 1px sol
 .scout-tiles b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 19px; line-height: 1.2; }
 .scout-tiles span { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ===== Make-over: rustiger, app-achtig ===== */
+.nav ul { grid-template-columns: repeat(5, 1fr) !important; }
+.nav a { font-size: 11.5px; padding-top: 9px; }
+.top .wrap { padding-block: 6px; }
+.brand img { width: 26px; height: 34px; }
+.wordmark { font-size: 14px; letter-spacing: .18em; }
+.wordmark small { display: none; }
+h1 { font-size: 26px; letter-spacing: .02em; }
+h2 { font-family: var(--font-body); font-size: 15px; font-weight: 700; text-transform: none; letter-spacing: 0; color: var(--muted); }
+h3 { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: 15px; }
+.rule { display: none; }
+.section { margin-top: 18px; gap: 8px; } .section.first { margin-top: 6px; }
+.stack > .section { margin-top: 4px; }
+.page-head { display: flex; align-items: flex-end; gap: 12px; }
+.card { border-radius: 16px; }
+.hero .crest-bg { display: none; }
+.seg.wide { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
+.seg.wide button { padding: 9px 4px; font-size: 14px; }
+.ev { display: grid; gap: 12px; }
+.ev.big { border-color: color-mix(in srgb, var(--gold) 55%, var(--line)); background: radial-gradient(120% 120% at 100% 0%, color-mix(in srgb, var(--gold) 14%, transparent), transparent 60%), var(--surface); }
+.ev-head { display: grid; grid-template-columns: 54px 1fr auto; gap: 12px; align-items: center; color: inherit; text-decoration: none; }
+.ev .date-block { display: grid; justify-items: center; background: var(--surface-2); border-radius: 12px; padding: 6px 0; line-height: 1.1; }
+.ev .date-block b { font-family: var(--font-display); font-size: 22px; }
+.ev .date-block span { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+.ev-title { font-weight: 800; font-size: 16.5px; line-height: 1.25; overflow-wrap: anywhere; }
+.ev-sub { font-size: 13px; color: var(--muted); }
+.ev-sub b { color: var(--fg); }
+.chev { font-size: 26px; color: var(--muted); line-height: 1; }
+.ev-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; }
+.ev-who { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; margin-right: auto; }
+.ev-cal { text-decoration: none; font-size: 18px; padding: 4px; }
+.ev .rsvp button { padding: 9px 4px; }
+.ev .rsvp button small { display: none; }
+.ev-count .countdown { margin: 0; }
+.avs { display: inline-flex; } .avs .avatar { width: 26px; height: 26px; font-size: 14px; margin-left: -6px; border: 2px solid var(--surface); }
+.avs .avatar:first-child { margin-left: 0; } .avs .more { font-size: 11px; font-weight: 800; }
+.todo { padding: 4px 14px; }
+.todo-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+.todo-row:last-child { border-bottom: 0; }
+.todo-row .ic { font-size: 20px; width: 28px; text-align: center; }
+.todo-row b { display: block; font-size: 14.5px; } .todo-row small { color: var(--muted); font-size: 12.5px; }
+.todo-ok { font-weight: 600; }
+.mini { display: block; color: inherit; text-decoration: none; padding: 6px 10px; }
+.mini table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mini th { text-align: left; font-size: 11px; color: var(--muted); font-weight: 700; padding: 6px 4px; }
+.mini td { padding: 8px 4px; border-top: 1px solid var(--line); } .mini td.tn { width: 60%; }
+.admin summary { cursor: pointer; }
+.match .opp { overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.seg.four { grid-template-columns: repeat(4, 1fr); } .seg.four button { font-size: 13px; }
+.roster { padding: 4px 14px; } .roster-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.roster-row:last-child { border-bottom: 0; } .roster-row small { display: block; color: var(--muted); font-size: 12.5px; }
+.roster-stats { display: flex; gap: 10px; flex: none; white-space: nowrap; font-size: 12px; color: var(--muted); } .roster-stats b { color: var(--fg); font-size: 15px; margin-right: 2px; }
+.sponsor { margin-top: 18px; }
 </style>
 
 <header class="top">
@@ -356,11 +410,10 @@ details.who .who-list { margin-top: 12px; padding-top: 12px; border-top: 1px sol
 <nav class="nav" aria-label="Hoofdmenu">
   <ul>
     <li><a href="#home" data-v="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a></li>
-    <li><a href="#aanwezig" data-v="aanwezig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M9 3v3M15 3v3M8.5 13l2.5 2.5 4.5-5"/></svg>Aanwezig</a></li>
+    <li><a href="#matchen" data-v="matchen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M9 3v3M15 3v3M4 10h16"/></svg>Matchen</a></li>
     <li><a href="#chat" data-v="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Chat<span class="dot" id="chat-dot" hidden></span></a></li>
-    <li><a href="#schema" data-v="schema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Schema</a></li>
-    <li><a href="#ranking" data-v="ranking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg>Ranking</a></li>
-    <li><a href="#profiel" data-v="profiel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Profiel</a></li>
+    <li><a href="#team" data-v="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .8 3.2 2.6 3.8 5.5"/></svg>Team</a></li>
+    <li><a href="#profiel" data-v="profiel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Ik</a></li>
   </ul>
 </nav>
 <main class="wrap" id="app" tabindex="-1">
@@ -539,7 +592,7 @@ function niceError(e) {
 }
 
 /* ---------- state ---------- */
-const S = { api: null, data: { matches: [], standings: [] }, db: { profiles: [], attendance: [], goals: [], votes: [], predictions: [], messages: [] }, schemaTab: store.get("sp-schema-tab") || "wedstrijden", authTab: "login" };
+const S = { api: null, data: { matches: [], standings: [] }, db: { profiles: [], attendance: [], goals: [], votes: [], predictions: [], messages: [] }, schemaTab: ({ wedstrijden: "programma", stand: "klassement" }[store.get("sp-schema-tab")] || store.get("sp-schema-tab") || "programma") || "wedstrijden", authTab: "login" };
 const me = () => S.db.profiles.find((p) => p.id === S.api.uid()) || null;
 const player = (id) => S.db.profiles.find((p) => p.id === id);
 const pname = (p) => (p ? p.nickname || p.name : "Onbekende piraat");
@@ -649,7 +702,7 @@ function matchRow(m) {
   const right = played(m) ? `${todo && !todo.done ? `<span class="pill warn">Invullen</span>` : ""}<span class="num">${s.us}–${s.them}</span><span class="res ${result(m)}">${result(m)}</span>` : `<span class="pill">${esc(m.time || "?")}</span>`;
   const yes = attFor(m.id).filter((a) => a.status === "yes").length;
   return `<a class="match" href="#match-${esc(m.id)}"><div class="date-block"><b class="num">${d.getDate()}</b><span>${MONTHS[d.getMonth()]}</span></div>
-    <div style="min-width:0"><div class="opp">${s.home ? "vs" : "@"} ${esc(s.opp)}</div><div class="sub">${DAYS[d.getDay()]} · ${esc(m.venue || "")}${!played(m) ? ` · ${yes} aan boord` : ""}</div></div>
+    <div style="min-width:0"><div class="opp">${s.home ? "vs" : "@"} ${esc(s.opp)}</div><div class="sub">${DAYS[d.getDay()]} ${m.time ? esc(m.time) : ""}${!played(m) ? ` · ${yes}/${maxP()} aan boord` : ""}</div></div>
     <div class="sc">${right}</div></a>`;
 }
 let klOpen = null, klTeam = store.get("sp-kl-team") || "";
@@ -937,7 +990,75 @@ function onChatUpdate() {
 }
 
 /* ---------- views ---------- */
+/* ---------- make-over: overzichtelijke schermen ---------- */
+function pageHead(title, sub, right) { return `<div class="page-head"><div class="grow" style="min-width:0">${sub ? `<p class="eyebrow">${sub}</p>` : ""}<h1>${title}</h1></div>${right || ""}</div>`; }
+function avatarStack(ids, max = 7) { const ps = ids.map(player).filter(Boolean); return `<span class="avs">${ps.slice(0, max).map((p) => `<span class="avatar">${av(p)}</span>`).join("")}${ps.length > max ? `<span class="avatar more">+${ps.length - max}</span>` : ""}</span>`; }
+function eventCard(m, opts = {}) {
+  const d = kickoff(m), s2 = side(m); const yesIds = attFor(m.id).filter((a) => a.status === "yes").map((a) => a.player_id);
+  const u = me(); const mine = u ? att(m.id, u.id) : null; const full = yesIds.length >= maxP();
+  const status = !u ? "" : mine ? `<span class="pill ${mine === "yes" ? "good" : mine === "no" ? "bad" : mine === "fan" ? "gold" : "warn"}">Jij: ${STATUS[mine]}</span>` : `<span class="pill warn">Nog niet geantwoord</span>`;
+  return `<article class="ev card${opts.big ? " big" : ""}">
+    <a class="ev-head" href="#match-${esc(m.id)}">
+      <div class="date-block"><span>${DAYS[d.getDay()]}</span><b class="num">${d.getDate()}</b><span>${MONTHS[d.getMonth()]}</span></div>
+      <div style="min-width:0"><div class="ev-title">${s2.home ? "Slaappiraten – " + esc(s2.opp) : esc(s2.opp) + " – Slaappiraten"}</div>
+        <div class="ev-sub">⏰ Aanwezig <b>${hhmm(arrival(m))}</b> · aftrap ${esc(m.time || "20:00")}${m.time ? "" : " (?)"}</div>
+        <div class="ev-sub">📍 ${esc(m.venue || "Sporthal HoGent")}</div></div>
+      <span class="chev" aria-hidden="true">›</span></a>
+    ${opts.big ? `<div class="ev-count">${countdown(m)}</div>` : ""}
+    ${rsvpButtons(m.id)}
+    <div class="ev-foot"><a href="#match-${esc(m.id)}" class="ev-who">${avatarStack(yesIds)}<span><b>${yesIds.length}/${maxP()}</b> aan boord${full ? " · vol" : ""}</span></a><a class="ev-cal" href="data/ics/${encodeURIComponent(m.id)}.ics" aria-label="Zet in agenda">📅</a></div>
+  </article>`;
+}
+function todoList() {
+  const u = me(); const items = [];
+  if (!u) items.push({ ic: "👋", t: "Log in of maak een account", sub: "Dan kan je je aanwezigheid doorgeven", href: "#profiel" });
+  if (u) { const open = upcoming().filter((m) => !att(m.id, u.id));
+    if (open.length === 1) items.push({ ic: "🙋", t: `Kom je tegen ${esc(side(open[0]).opp)}?`, sub: `${fmtDate(open[0], true)} · aanwezig ${hhmm(arrival(open[0]))}`, href: `#match-${esc(open[0].id)}` });
+    else if (open.length > 1) items.push({ ic: "🙋", t: `${open.length} matchen wachten op je antwoord`, sub: `Eerstvolgende: ${esc(side(open[0]).opp)}, ${fmtDate(open[0], true)}`, href: "#matchen", act: "programma" }); }
+  const lp = playedOurs().slice(-1)[0]; const t = afterMatchTodo(lp, u);
+  if (t && !t.done) items.push({ ic: "📝", t: "Vul je goals in en stem de speler van de match", sub: `Na de match tegen ${esc(side(lp).opp)}`, href: `#match-${esc(lp.id)}` });
+  if (u) { const debt = treatTally()[u.id]; if (debt && debt.late > debt.paid) items.push({ ic: "🍻", t: "Je moet nog trakteren", sub: "Te laat = trakteren", href: "#team" }); }
+  if (!isStandalone() && store.get("sp-installed") !== "1") items.push({ ic: "📲", t: "Zet de app op je beginscherm", sub: "Opent sneller, met ons logo", href: "#installeren" });
+  if (!items.length) return `<div class="card todo-ok">✅ Alles in orde. Niets te doen.</div>`;
+  return `<div class="card list todo">${items.map((x) => `<a class="todo-row" href="${x.href}"${x.act ? ` data-act="schematab" data-t="${x.act}"` : ""}><span class="ic">${x.ic}</span><span class="grow"><b>${x.t}</b><small>${x.sub}</small></span><span class="chev">›</span></a>`).join("")}</div>`;
+}
+function miniTable() {
+  const rows = S.data.standings || []; if (!rows.length) return "";
+  const ui = Math.max(0, rows.findIndex((r) => isUs(r.team))); const show = rows.filter((r, i) => Math.abs(i - ui) <= 1 || (ui === 0 && i <= 2));
+  const sg = (n) => (n > 0 ? "+" : "") + n;
+  return `<a class="card mini" href="#matchen" data-act="gostand"><table><thead><tr><th>#</th><th>Ploeg</th><th>G</th><th>DS</th><th>P</th></tr></thead><tbody>${show.map((r) => `<tr class="${isUs(r.team) ? "us" : ""}"><td>${r.rank}</td><td class="tn">${esc(r.team)}</td><td>${r.played}</td><td>${sg(r.goalsFor - r.goalsAgainst)}</td><td class="pts">${r.points}</td></tr>`).join("")}</tbody></table></a>`;
+}
 function viewHome() {
+  const u = me(); const n = nextMatch(); const lastPlayed = playedOurs().slice(-1)[0];
+  const top = scorers().filter((x) => x.goals > 0).sort((a, b) => b.goals - a.goals).slice(0, 3);
+  const later = upcoming().slice(1, 3);
+  return `<div class="stack">
+  ${pageHead(u ? `Hoi ${esc(pname(u))}` : "Ahoy!", `${LONGDAYS[new Date().getDay()]} ${new Date().getDate()} ${MONTHS[new Date().getMonth()]}`)}
+  <section class="section first"><h2>Te doen</h2>${todoList()}</section>
+  <section class="section"><div class="section-head"><h2>Volgende match</h2><a href="#matchen">Alle matchen →</a></div>
+    ${n ? eventCard(n, { big: true }) : `<div class="card empty-state">Geen geplande matchen meer. Rust uit, piraten.</div>`}
+    ${later.length ? `<div class="card list">${later.map(matchRow).join("")}</div>` : ""}</section>
+  <section class="section"><div class="section-head"><h2>Klassement</h2><a href="#matchen" data-act="gostand">Volledig →</a></div>${miniTable()}</section>
+  ${lastPlayed ? `<section class="section"><div class="section-head"><h2>Laatste uitslag</h2><a href="#match-${esc(lastPlayed.id)}">Verslag →</a></div><div class="card list">${matchRow(lastPlayed)}</div></section>` : ""}
+  <section class="section"><div class="section-head"><h2>Topscorers</h2><a href="#team">Team →</a></div>
+    ${top.length ? `<div class="card list">${top.map((x, i) => `<div class="rank"><span class="pos">${i + 1}</span><span class="avatar">${av(x.p)}</span><b style="min-width:0">${esc(pname(x.p))}</b><span class="val num">${x.goals}</span></div>`).join("")}</div>` : `<div class="card empty-state">Nog geen doelpunten doorgegeven.</div>`}</section>
+  ${sponsorBlock()}
+  </div>`;
+}
+function viewMatchen() {
+  const tab = ["programma", "uitslagen", "klassement"].includes(S.schemaTab) ? S.schemaTab : "programma";
+  const up = upcoming(); const pl = playedOurs().slice().reverse();
+  const seg = `<div class="seg wide" role="tablist" aria-label="Kies weergave">${[["programma", "Programma"], ["uitslagen", "Uitslagen"], ["klassement", "Klassement"]].map(([k, t]) => `<button type="button" role="tab" data-act="schematab" data-t="${k}" aria-pressed="${tab === k}" aria-selected="${tab === k}">${t}</button>`).join("")}</div>`;
+  const body = tab === "klassement" ? klassement()
+    : tab === "uitslagen" ? (pl.length ? `<div class="card list">${pl.map(matchRow).join("")}</div>` : `<div class="card empty-state">Nog geen gespeelde matchen.</div>`)
+    : `${!me() ? `<div class="banner"><a href="#profiel">Log in</a> om door te geven of je komt.</div>` : ""}${up.map((m) => eventCard(m)).join("") || `<div class="card empty-state">Geen komende matchen in het schema.</div>`}
+      <section class="card stack" style="gap:8px"><b>📅 Alle matchen in je agenda</b><p class="muted" style="font-size:13px;margin:0">Eén keer abonneren: nieuwe matchen en gewijzigde uren komen er vanzelf bij, telkens vanaf het uur dat je aanwezig moet zijn.</p><div class="cal-row"><a class="btn sm" href="${feedUrl()}">iPhone of Mac</a><a class="btn ghost sm" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent(feedUrl())}" target="_blank" rel="noopener">Google Agenda</a></div></section>`;
+  const admin = isAdmin() ? `<details class="card admin"><summary><b>👑 Kapitein-tools</b></summary><div class="stack" style="margin-top:10px">${limitControl()}
+    <div class="card stack" style="gap:8px"><b>Tournify nu verversen</b><p class="muted" style="font-size:13px;margin:0">Tik op de knop, dan op <b>Run workflow</b> en nog eens op het groene <b>Run workflow</b>. Na ongeveer 2 minuten staat alles in de app. Op woensdagavond gebeurt dit ook vanzelf.</p><a class="btn sm" href="https://github.com/slaappiraten/slaappiraten.github.io/actions/workflows/tournify.yml" target="_blank" rel="noopener">🔄 Tournify verversen</a></div></div></details>` : "";
+  return `<div class="stack">${pageHead("Matchen", `${esc(S.data.poule || "")} · Ghent Students League`)}${seg}${body}${admin}${updatedLine()}</div>`;
+}
+
+function viewHomeOld() {
   const n = nextMatch(); const st = seasonStats(); const lastPlayed = playedOurs().slice(-1)[0];
   const ourRow = (S.data.standings || []).find((r) => isUs(r.team));
   const top = scorers().filter((s) => s.goals > 0).sort((a, b) => b.goals - a.goals).slice(0, 3);
@@ -956,7 +1077,7 @@ function viewHome() {
     ${scouting(n)}` : `<section class="hero">${crestBg}<p class="eyebrow">Volgende wedstrijd</p><p style="margin:0">Geen geplande wedstrijden meer in het schema. Rust uit, piraten.</p></section>`}
 
   <section class="section" aria-labelledby="season-h">
-    <div class="section-head"><h2 id="season-h">Seizoen tot nu</h2>${ourRow ? `<a href="#schema" data-act="schematab" data-t="stand"><span class="pill gold">${ourRow.rank}e in ${esc(S.data.poule || "de poule")} · ${ourRow.points} pt</span></a>` : ""}</div>
+    <div class="section-head"><h2 id="season-h">Seizoen tot nu</h2>${ourRow ? `<a href="#matchen" data-act="schematab" data-t="stand"><span class="pill gold">${ourRow.rank}e in ${esc(S.data.poule || "de poule")} · ${ourRow.points} pt</span></a>` : ""}</div>
     <div class="tiles"><div class="tile"><b class="num">${st.played}</b><span>Gespeeld</span></div><div class="tile"><b class="num" style="color:var(--good)">${st.w}</b><span>Gewonnen</span></div><div class="tile"><b class="num" style="color:var(--warn)">${st.g}</b><span>Gelijk</span></div><div class="tile"><b class="num" style="color:var(--bad)">${st.v}</b><span>Verloren</span></div></div>
     <div class="card treasure"><div><p class="eyebrow">Schatkist (doelsaldo)</p><div class="big num ${st.gd < 0 ? "neg" : ""}">${st.gd > 0 ? "+" : ""}${st.gd}</div><p class="muted" style="font-size:12.5px;margin:4px 0 0">${st.gf} buitgemaakt, ${st.ga} kwijtgespeeld</p></div>
       <div style="min-width:0"><p class="muted" style="font-size:12.5px;margin:0 0 6px">Vorm, laatste 5</p>${formStrip()}</div></div>
@@ -965,7 +1086,7 @@ function viewHome() {
   ${lastPlayed ? `<section class="section" aria-labelledby="last-h"><div class="section-head"><h2 id="last-h">Laatste uitslag</h2><a href="#match-${esc(lastPlayed.id)}">Goals & stemmen →</a></div>
     <a class="card" href="#match-${esc(lastPlayed.id)}" style="text-decoration:none;color:inherit;display:grid;gap:8px">${versus(lastPlayed)}<p class="meta">${fmtDate(lastPlayed, true)} · ${esc(lastPlayed.venue || "")}</p></a></section>` : ""}
 
-  <section class="section" aria-labelledby="ts-h"><div class="section-head"><h2 id="ts-h">Topscorers</h2><a href="#ranking">Alle rankings</a></div>
+  <section class="section" aria-labelledby="ts-h"><div class="section-head"><h2 id="ts-h">Topscorers</h2><a href="#team">Alle rankings</a></div>
     ${top.length ? `<div class="card list">${top.map((s, i) => `<div class="rank"><span class="pos">${i + 1}</span><span class="avatar">${av(s.p)}</span><div style="min-width:0"><b>${esc(pname(s.p))}</b></div><span class="val num">${s.goals}</span></div>`).join("")}</div>` : `<div class="card empty-state">Nog geen doelpunten doorgegeven. Scoorde je? Geef het door bij de wedstrijd.</div>`}
   </section>
   ${sponsorBlock()}
@@ -996,6 +1117,24 @@ function viewSchema() {
   ${isAdmin() ? `<div class="card stack" style="gap:8px"><b>👑 Kapitein: Tournify nu verversen</b><p class="muted" style="font-size:13px;margin:0">Uitslag net ingegeven in Tournify? Tik op de knop, dan op <b>Run workflow</b> en nog eens op het groene <b>Run workflow</b>. Na ongeveer 2 minuten staat alles in de app. Op woensdagavond gebeurt dit ook vanzelf, elke 10 minuten.</p><a class="btn sm" href="https://github.com/slaappiraten/slaappiraten.github.io/actions/workflows/tournify.yml" target="_blank" rel="noopener">🔄 Tournify verversen</a></div>` : ""}
   ${updatedLine()}</div>`;
 }
+let teamTab = store.get("sp-team-tab") || "spelers";
+function viewTeam() {
+  const tabs = [["spelers", "Spelers"], ["goals", "Goals"], ["aanwezig", "Aanwezig"], ["awards", "Awards"]];
+  if (!tabs.some(([k]) => k === teamTab)) teamTab = "spelers";
+  const seg = `<div class="seg wide four" role="tablist" aria-label="Kies onderdeel">${tabs.map(([k, t]) => `<button type="button" role="tab" data-act="teamtab" data-t="${k}" aria-pressed="${teamTab === k}" aria-selected="${teamTab === k}">${t}</button>`).join("")}</div>`;
+  let body = "";
+  if (teamTab === "spelers") {
+    const sc = scorers(); const as = attendanceStats(); const cab = medalCabinet();
+    const rows = S.db.profiles.slice().sort((a, b) => (b.is_admin - a.is_admin) || (a.number ?? 99) - (b.number ?? 99));
+    body = rows.length ? `<div class="card list roster">${rows.map((p) => { const g = sc.find((x) => x.p.id === p.id)?.goals || 0; const a = as.find((x) => x.p.id === p.id);
+      return `<div class="roster-row"><span class="avatar">${av(p)}</span><div class="grow" style="min-width:0"><b>${esc(pname(p))}${p.is_admin ? " 👑" : ""}</b><small>${p.number != null ? "#" + p.number + " · " : ""}${esc(p.position || "Piraat")}</small></div><div class="roster-stats"><span><b class="num">${g}</b>⚽</span><span><b class="num">${a ? a.n : 0}</b>✓</span><span><b class="num">${Object.values(cab[p.id] || {}).reduce((t, n) => t + n, 0)}</b>🏅</span></div></div>`; }).join("")}</div><p class="muted" style="font-size:12px;margin:0">⚽ goals · ✓ aanwezig bij gespeelde matchen · 🏅 awards</p>` : `<div class="card empty-state">Nog geen spelers. <a href="#profiel">Maak een account</a>.</div>`;
+  } else {
+    const doc = new DOMParser().parseFromString(`<div>${viewRanking()}</div>`, "text/html");
+    const pick = { goals: ["sea-h", "g-h"], aanwezig: ["att-h", "tr-h"], awards: ["m-h", "p-h"] }[teamTab];
+    body = pick.map((id) => doc.querySelector(`section[aria-labelledby="${id}"]`)?.outerHTML || "").join("") || `<div class="card empty-state">Nog niets te zien.</div>`;
+  }
+  return `<div class="stack">${pageHead("Team", "Slaappiraten · seizoen 26-27")}${seg}${body}</div>`;
+}
 function viewRanking() {
   const sc = scorers().sort((a, b) => b.goals - a.goals || b.assists - a.assists);
   const maxG = Math.max(1, ...sc.map((s) => s.goals));
@@ -1005,7 +1144,7 @@ function viewRanking() {
   const cab = medalCabinet(); const pp = predictionPoints();
   const preds = S.db.profiles.map((p) => ({ p, ...(pp[p.id] || { pts: 0, exact: 0 }) })).filter((x) => x.pts > 0 || S.db.predictions.some((q) => q.player_id === x.p.id)).sort((a, b) => b.pts - a.pts);
   const st = seasonStats();
-  return `<div class="stack"><div><p class="eyebrow">Ranking</p><h1>Wie heerst er op het schip?</h1><hr class="rule"></div>
+  return `<div class="stack"><div><p class="eyebrow">Statistieken, awards en trakteerlijst</p><h1>Team</h1></div>
   <section class="section" aria-labelledby="sea-h"><div class="section-head"><h2 id="sea-h">Zeekaart</h2><span class="pill gold">Doelsaldo ${st.gd > 0 ? "+" : ""}${st.gd}</span></div>
     <div class="card">${seaChart()}<p class="muted" style="font-size:12.5px;margin:8px 0 0">Boven zeeniveau = meer gescoord dan tegengekregen. Elke stip is een wedstrijd.</p></div></section>
   <section class="section" aria-labelledby="g-h"><h2 id="g-h">Topscorers</h2>
@@ -1053,7 +1192,7 @@ function afterMatchCard(m, onHome) {
   </section>`;
 }
 function viewMatch(id) {
-  const m = (S.data.matches || []).find((x) => x.id === id); if (!m) return `<a class="back" href="#schema">← Schema</a><div class="card empty-state">Deze wedstrijd bestaat niet (meer).</div>`;
+  const m = (S.data.matches || []).find((x) => x.id === id); if (!m) return `<a class="back" href="#matchen">← Matchen</a><div class="card empty-state">Deze wedstrijd bestaat niet (meer).</div>`;
   const u = me(); const pl = played(m); const s = side(m);
   const yesIds = attFor(m.id).filter((a) => a.status === "yes").map((a) => a.player_id);
   const roster = yesIds.length ? yesIds.map(player).filter(Boolean) : S.db.profiles;
@@ -1064,7 +1203,7 @@ function viewMatch(id) {
   const myPred = u ? S.db.predictions.find((p) => p.match_id === m.id && p.player_id === u.id) : null;
   const allPreds = S.db.predictions.filter((p) => p.match_id === m.id);
   const verdict = { W: "Buit binnengehaald", V: "Schip gezonken", G: "Gelijkspel op volle zee" };
-  return `<a class="back" href="#schema">← Schema</a><div class="stack">
+  return `<a class="back" href="#matchen">← Matchen</a><div class="stack">
   <section class="hero">${crestBg}<p class="eyebrow">${fmtDate(m, true)}${m.time ? " · " + esc(m.time) : ""} · ${esc(m.venue || "")}</p>${versus(m)}
     ${pl ? `<p class="meta"><span class="res ${result(m)}">${result(m)}</span><span>${verdict[result(m)]}</span></p>` : countdown(m)}</section>
   ${pl ? afterMatchCard(m, false) : ""}
@@ -1136,15 +1275,15 @@ function viewLogin() {
 }
 
 /* ---------- router ---------- */
-function currentView() { const h = decodeURIComponent(location.hash.slice(1)); if (!h || h.includes("=")) return ["home"]; if (h.startsWith("match-")) return ["match", h.slice(6)]; return [["home", "aanwezig", "schema", "ranking", "profiel", "installeren", "chat"].includes(h) ? h : "home"]; }
+function currentView() { const h = decodeURIComponent(location.hash.slice(1)); if (!h || h.includes("=")) return ["home"]; if (h.startsWith("match-")) return ["match", h.slice(6)]; const alias = { aanwezig: "matchen", schema: "matchen", ranking: "team" }; const v = alias[h] || h; return [["home", "matchen", "team", "profiel", "installeren", "chat"].includes(v) ? v : "home"]; }
 function render() {
   const [v, arg] = currentView(); const app = $("#app");
-  const html = v === "aanwezig" ? viewAanwezig() : v === "schema" ? viewSchema() : v === "ranking" ? viewRanking() : v === "profiel" ? viewProfiel() : v === "match" ? viewMatch(arg) : v === "installeren" ? viewInstall() : v === "chat" ? viewChat() : viewHome();
+  const html = v === "matchen" ? viewMatchen() : v === "team" ? viewTeam() : v === "profiel" ? viewProfiel() : v === "match" ? viewMatch(arg) : v === "installeren" ? viewInstall() : v === "chat" ? viewChat() : viewHome();
   const demo = S.api.mode === "demo" && v !== "chat" ? `<div class="banner" style="margin-bottom:14px">Voorbeeldmodus: spelers, goals en stemmen zijn verzonnen en blijven in jouw browser. Het schema en de stand komen echt uit Tournify.</div>` : "";
   const keepY = S.lastView === v ? window.scrollY : null;
   app.innerHTML = demo + html;
   if (keepY != null) window.scrollTo(0, keepY);
-  const navV = v === "match" ? "schema" : v === "installeren" ? "profiel" : v;
+  const navV = v === "match" ? "matchen" : v === "installeren" ? "profiel" : v;
   document.querySelectorAll(".nav a").forEach((a) => { if (a.dataset.v === navV) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const u = me(); $("#who").innerHTML = u ? `<span class="avatar">${av(u)}</span><span>${esc(pname(u))}</span>` : `<span class="btn sm ghost">Inloggen</span>`;
   const tp = $("#theme-pick"); if (tp) tp.value = store.get("sp-theme") || "";
@@ -1190,7 +1329,7 @@ document.addEventListener("click", (e) => {
     case "late": case "paid": if (!isAdmin()) return; chatSend(`§${d.act === "late" ? "laat" : "betaald"}:${d.m}|${d.p}|${d.v}`).then((ok) => { if (ok) { render(); toast(d.act === "late" ? (d.v === "1" ? "Op te laat gezet: trakteren! 🍻" : "Te laat geschrapt.") : d.v === "1" ? "Genoteerd: getrakteerd ✓" : "Teruggezet."); } }); break;
     case "chatreact": chatSend(`§react:${d.id}:${d.e}`); break;
     case "chatvote": chatSend(`§vote:${d.id}:${d.i}`); break;
-    case "gostand": S.schemaTab = "stand"; store.set("sp-schema-tab", "stand"); location.hash = "schema"; break;
+    case "gostand": S.schemaTab = "klassement"; store.set("sp-schema-tab", "klassement"); location.hash = "matchen"; break;
     case "tray": chatTray = d.t || false; rerenderComposer(); if (chatTray === "poll") $("#composer input[name=q]")?.focus(); scrollChatBottom(); break;
     case "quick": {
       const n = nextMatch(); const q = d.q;
@@ -1203,9 +1342,10 @@ document.addEventListener("click", (e) => {
         Notification.requestPermission().then((r) => { if (r === "granted") { store.set("sp-notif", "1"); toast("Meldingen aan zolang de app open staat."); } else toast("Meldingen zijn geblokkeerd in je instellingen."); rerenderComposer(); }); return; }
       chatTray = false; rerenderComposer(); break;
     }
+    case "teamtab": teamTab = d.t; store.set("sp-team-tab", d.t); render(); break;
     case "klrow": klOpen = klOpen === d.t ? null : d.t; render(); break;
     case "klteam": klTeam = d.t; store.set("sp-kl-team", d.t); render(); break;
-    case "schematab": S.schemaTab = d.t; store.set("sp-schema-tab", d.t); if (location.hash === "#schema") render(); break;
+    case "schematab": { const t = { wedstrijden: "programma", stand: "klassement" }[d.t] || d.t; S.schemaTab = t; store.set("sp-schema-tab", t); if (location.hash === "#matchen") render(); else location.hash = "matchen"; break; }
     case "authtab": S.authTab = d.t; render(); break;
     case "demologin": act(() => S.api.signInAs(d.p), "Welkom aan boord!").then(() => (location.hash = "home")); break;
     case "logout": act(() => S.api.signOut(), "Uitgelogd."); break;
