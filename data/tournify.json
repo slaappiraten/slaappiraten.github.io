@@ -1,6 +1,6 @@
 {
  "source": "https://tournifyapp.com/live/ghentstudentsleague26-27/schedule",
- "updatedAt": "2026-11-18T21:09:38.073Z",
+ "updatedAt": "2026-11-25T19:17:41.587Z",
  "team": "Slaappiraten",
  "poule": "Poule B",
  "matches": [
@@ -73,13 +73,13 @@
   {
    "id": "2026-11-25-foot-ball-lovers-fc-a-nul",
    "date": "2026-11-25",
-   "time": "19:00",
+   "time": null,
    "venue": "Zaal 3BC · Sporthal HoGent",
    "poule": "Poule B",
    "home": "Foot/Ball Lovers",
    "away": "FC A-nul",
-   "homeScore": null,
-   "awayScore": null
+   "homeScore": 10,
+   "awayScore": 7
   },
   {
    "id": "2026-11-25-slaappiraten-kvdo",
@@ -185,6 +185,18 @@
   },
   {
    "rank": 2,
+   "team": "Foot/Ball Lovers",
+   "played": 4,
+   "won": 2,
+   "drawn": 0,
+   "lost": 2,
+   "points": 6,
+   "goalsFor": 26,
+   "goalsAgainst": 50,
+   "fairPlay": 0
+  },
+  {
+   "rank": 3,
    "team": "KVDO",
    "played": 1,
    "won": 1,
@@ -196,19 +208,19 @@
    "fairPlay": 0
   },
   {
-   "rank": 3,
+   "rank": 4,
    "team": "FC A-nul",
-   "played": 2,
+   "played": 3,
    "won": 1,
    "drawn": 0,
-   "lost": 1,
+   "lost": 2,
    "points": 3,
-   "goalsFor": 18,
-   "goalsAgainst": 14,
+   "goalsFor": 25,
+   "goalsAgainst": 24,
    "fairPlay": 0
   },
   {
-   "rank": 4,
+   "rank": 5,
    "team": "The Ghentlemen",
    "played": 2,
    "won": 1,
@@ -217,18 +229,6 @@
    "points": 3,
    "goalsFor": 13,
    "goalsAgainst": 13,
-   "fairPlay": 0
-  },
-  {
-   "rank": 5,
-   "team": "Foot/Ball Lovers",
-   "played": 3,
-   "won": 1,
-   "drawn": 0,
-   "lost": 2,
-   "points": 3,
-   "goalsFor": 16,
-   "goalsAgainst": 43,
    "fairPlay": 0
   },
   {
