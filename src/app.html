@@ -1061,6 +1061,30 @@ function viewHome() {
   ${sponsorBlock()}
   </div>`;
 }
+function tfButton(small) {
+  return `<button type="button" class="btn sm${small ? " ghost" : ""}" data-act="tfrefresh" ${S.tfBusy ? "disabled" : ""} aria-label="Tournify verversen">${S.tfBusy ? "⏳ Bezig…" : small ? "🔄 Verversen" : "🔄 Tournify verversen"}</button>`;
+}
+async function tournifyRefresh() {
+  if (S.tfBusy) return;
+  if (S.api.mode === "demo") { toast("In de voorbeeldmodus kan je niet verversen."); return; }
+  S.tfBusy = true; render(); const before = S.data.updatedAt;
+  try {
+    const { error } = await S.api.c.functions.invoke("tournify-refresh", { body: {} });
+    if (error) { let msg = error.message; try { const j = await error.context.json(); msg = j.error || msg; } catch {} throw new Error(msg); }
+  } catch (e) {
+    S.tfBusy = false; render();
+    toast(/GITHUB_TOKEN/.test(String(e.message)) ? "Verversen is nog niet helemaal ingesteld: de GitHub-sleutel ontbreekt nog." : "Verversen lukte niet: " + e.message); return;
+  }
+  toast("Tournify wordt ververst. Dit duurt ongeveer 2 minuten…");
+  const t0 = Date.now();
+  const poll = async () => {
+    await loadMatchData();
+    const changed = S.data.updatedAt !== before;
+    if (changed || Date.now() - t0 > 240000) { S.tfBusy = false; render(); toast(changed ? "Bijgewerkt met Tournify ✓" : "Klaar. Er was niets nieuws in Tournify."); return; }
+    setTimeout(poll, 15000);
+  };
+  setTimeout(poll, 45000);
+}
 function viewMatchen() {
   const tab = ["programma", "uitslagen", "klassement"].includes(S.schemaTab) ? S.schemaTab : "programma";
   const up = upcoming(); const pl = playedOurs().slice().reverse();
@@ -1070,8 +1094,8 @@ function viewMatchen() {
     : `${!me() ? `<div class="banner"><a href="#profiel">Log in</a> om door te geven of je komt.</div>` : ""}${up.map((m) => eventCard(m)).join("") || `<div class="card empty-state">Geen komende matchen in het schema.</div>`}
       <section class="card stack" style="gap:8px"><b>📅 Alle matchen in je agenda</b><p class="muted" style="font-size:13px;margin:0">Eén keer abonneren: nieuwe matchen en gewijzigde uren komen er vanzelf bij, telkens vanaf het uur dat je aanwezig moet zijn.</p><div class="cal-row"><a class="btn sm" href="${feedUrl()}">iPhone of Mac</a><a class="btn ghost sm" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent(feedUrl())}" target="_blank" rel="noopener">Google Agenda</a></div></section>`;
   const admin = isAdmin() ? `<details class="card admin"><summary><b>👑 Kapitein-tools</b></summary><div class="stack" style="margin-top:10px">${limitControl()}
-    <div class="card stack" style="gap:8px"><b>Tournify nu verversen</b><p class="muted" style="font-size:13px;margin:0">Tik op de knop, dan op <b>Run workflow</b> en nog eens op het groene <b>Run workflow</b>. Na ongeveer 2 minuten staat alles in de app. Op woensdagavond gebeurt dit ook vanzelf.</p><a class="btn sm" href="https://github.com/slaappiraten/slaappiraten.github.io/actions/workflows/tournify.yml" target="_blank" rel="noopener">🔄 Tournify verversen</a></div></div></details>` : "";
-  return `<div class="stack">${pageHead("Matchen", `${esc(S.data.poule || "")} · Ghent Students League`)}${seg}${body}${admin}${updatedLine()}</div>`;
+    <div class="card stack" style="gap:8px"><b>Tournify nu verversen</b><p class="muted" style="font-size:13px;margin:0">Uitslag net ingegeven in Tournify? Tik op de knop en wacht ongeveer 2 minuten. De app werkt zichzelf bij. Op woensdagavond gebeurt dit ook vanzelf.</p>${tfButton()}</div></div></details>` : "";
+  return `<div class="stack">${pageHead("Matchen", `${esc(S.data.poule || "")} · Ghent Students League`, isAdmin() ? tfButton(true) : "")}${seg}${body}${admin}${updatedLine()}</div>`;
 }
 
 function viewHomeOld() {
@@ -1130,7 +1154,7 @@ function viewSchema() {
   ${tab === "stand" ? klassement()
     : `<div class="card list">${ours().map(matchRow).join("") || `<div class="empty-state">Nog geen wedstrijden.</div>`}</div>
     <section class="card stack" style="gap:8px"><b>📅 Alle matchen automatisch in je agenda</b><p class="muted" style="font-size:13px;margin:0">Eén keer abonneren en nieuwe matchen of gewijzigde uren komen er vanzelf bij. Elke match staat erin vanaf het uur dat je aanwezig moet zijn: een kwartier voor de aftrap. Te laat = trakteren.</p><div class="cal-row"><a class="btn sm" href="${feedUrl()}">iPhone of Mac: abonneren</a><a class="btn ghost sm" href="https://calendar.google.com/calendar/r?cid=${encodeURIComponent(feedUrl())}" target="_blank" rel="noopener">Google Agenda</a></div></section>`}
-  ${isAdmin() ? `<div class="card stack" style="gap:8px"><b>👑 Kapitein: Tournify nu verversen</b><p class="muted" style="font-size:13px;margin:0">Uitslag net ingegeven in Tournify? Tik op de knop, dan op <b>Run workflow</b> en nog eens op het groene <b>Run workflow</b>. Na ongeveer 2 minuten staat alles in de app. Op woensdagavond gebeurt dit ook vanzelf, elke 10 minuten.</p><a class="btn sm" href="https://github.com/slaappiraten/slaappiraten.github.io/actions/workflows/tournify.yml" target="_blank" rel="noopener">🔄 Tournify verversen</a></div>` : ""}
+  ${isAdmin() ? `<div class="card stack" style="gap:8px"><b>👑 Kapitein: Tournify nu verversen</b><p class="muted" style="font-size:13px;margin:0">Uitslag net ingegeven in Tournify? Tik op de knop en wacht ongeveer 2 minuten. De app werkt zichzelf bij. Op woensdagavond gebeurt dit ook vanzelf, elke 10 minuten.</p>${tfButton()}</div>` : ""}
   ${updatedLine()}</div>`;
 }
 let teamTab = store.get("sp-team-tab") || "spelers";
@@ -1358,6 +1382,7 @@ document.addEventListener("click", (e) => {
       chatTray = false; rerenderComposer(); break;
     }
     case "seenlist": toast(b.title || ""); break;
+    case "tfrefresh": if (isAdmin()) tournifyRefresh(); break;
     case "teamtab": teamTab = d.t; store.set("sp-team-tab", d.t); render(); break;
     case "klrow": klOpen = klOpen === d.t ? null : d.t; render(); break;
     case "klteam": klTeam = d.t; store.set("sp-kl-team", d.t); render(); break;
