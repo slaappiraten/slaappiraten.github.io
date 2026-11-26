@@ -26,12 +26,12 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-11-25-slaappiraten-kvdo@slaappiraten
-DTSTAMP:20261125T191741Z
+DTSTAMP:20261126T020002Z
 DTSTART;TZID=Europe/Brussels:20261125T194500
 DTEND;TZID=Europe/Brussels:20261125T205000
-SUMMARY:⚽ Slaappiraten - KVDO · aanwezig 19:45
+SUMMARY:⚽ Slaappiraten - KVDO (6-12) · aanwezig 19:45
 LOCATION:Zaal 3BC · Sporthal HoGent
-DESCRIPTION:Slaappiraten tegen KVDO (thuis)\, Poule B Ghent Students League.\n\n⏰ Aanwezig om 19:45\n⚽ Aftrap om 20:00\n📍 Zaal 3BC · Sporthal HoGent\n\n🍻 Te laat = trakteren!\n\nAanwezigheid doorgeven: https://slaappiraten.github.io/#match-2026-11-25-slaappiraten-kvdo
+DESCRIPTION:Slaappiraten tegen KVDO (thuis)\, Poule B Ghent Students League.\n\n⏰ Aanwezig om 19:45\n⚽ Aftrap om 20:00 (uur nog niet bevestigd)\n📍 Zaal 3BC · Sporthal HoGent\n\n🍻 Te laat = trakteren!\n\nAanwezigheid doorgeven: https://slaappiraten.github.io/#match-2026-11-25-slaappiraten-kvdo
 URL:https://slaappiraten.github.io/#match-2026-11-25-slaappiraten-kvdo
 BEGIN:VALARM
 ACTION:DISPLAY

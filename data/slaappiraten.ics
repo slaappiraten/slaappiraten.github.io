@@ -26,7 +26,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:2026-10-28-slaappiraten-foot-ball-lovers@slaappiraten
-DTSTAMP:20261125T191741Z
+DTSTAMP:20261126T020002Z
 DTSTART;TZID=Europe/Brussels:20261028T194500
 DTEND;TZID=Europe/Brussels:20261028T205000
 SUMMARY:⚽ Slaappiraten - Foot/Ball Lovers (15-4) · aanwezig 19:45
@@ -46,7 +46,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-18-the-ghentlemen-slaappiraten@slaappiraten
-DTSTAMP:20261125T191741Z
+DTSTAMP:20261126T020002Z
 DTSTART;TZID=Europe/Brussels:20261118T194500
 DTEND;TZID=Europe/Brussels:20261118T205000
 SUMMARY:⚽ Slaappiraten - The Ghentlemen (7-3) · aanwezig 19:45
@@ -66,12 +66,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-25-slaappiraten-kvdo@slaappiraten
-DTSTAMP:20261125T191741Z
+DTSTAMP:20261126T020002Z
 DTSTART;TZID=Europe/Brussels:20261125T194500
 DTEND;TZID=Europe/Brussels:20261125T205000
-SUMMARY:⚽ Slaappiraten - KVDO · aanwezig 19:45
+SUMMARY:⚽ Slaappiraten - KVDO (6-12) · aanwezig 19:45
 LOCATION:Zaal 3BC · Sporthal HoGent
-DESCRIPTION:Slaappiraten tegen KVDO (thuis)\, Poule B Ghent Students League.\n\n⏰ Aanwezig om 19:45\n⚽ Aftrap om 20:00\n📍 Zaal 3BC · Sporthal HoGent\n\n🍻 Te laat = trakteren!\n\nAanwezigheid doorgeven: https://slaappiraten.github.io/#match-2026-11-25-slaappiraten-kvdo
+DESCRIPTION:Slaappiraten tegen KVDO (thuis)\, Poule B Ghent Students League.\n\n⏰ Aanwezig om 19:45\n⚽ Aftrap om 20:00 (uur nog niet bevestigd)\n📍 Zaal 3BC · Sporthal HoGent\n\n🍻 Te laat = trakteren!\n\nAanwezigheid doorgeven: https://slaappiraten.github.io/#match-2026-11-25-slaappiraten-kvdo
 URL:https://slaappiraten.github.io/#match-2026-11-25-slaappiraten-kvdo
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -86,7 +86,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-02-slaappiraten-fc-emmatje@slaappiraten
-DTSTAMP:20261125T191741Z
+DTSTAMP:20261126T020002Z
 DTSTART;TZID=Europe/Brussels:20261202T194500
 DTEND;TZID=Europe/Brussels:20261202T205000
 SUMMARY:⚽ Slaappiraten - FC EMMATJE · aanwezig 19:45
@@ -106,7 +106,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-16-fc-a-nul-slaappiraten@slaappiraten
-DTSTAMP:20261125T191741Z
+DTSTAMP:20261126T020002Z
 DTSTART;TZID=Europe/Brussels:20261216T194500
 DTEND;TZID=Europe/Brussels:20261216T205000
 SUMMARY:⚽ Slaappiraten - FC A-nul · aanwezig 19:45
